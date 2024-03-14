@@ -1,19 +1,23 @@
 package com.ismet.controller;
 
-import com.ismet.model.Currency;
-import com.ismet.view.CurrencyView;
-import com.ismet.view.DictionaryView;
+import com.ismet.datasource.MariaDbConnection;
+import com.ismet.dao.CurrencyDao;
 
 public class CurrencyController {
+    private final CurrencyDao currencyDao;
 
-    private Currency currency;
-
-    public CurrencyController(Currency currency)
-    {
-        this.currency = currency;
+    public CurrencyController(MariaDbConnection dbConnection) {
+        this.currencyDao = new CurrencyDao(dbConnection);
     }
-
-    public static void main(String[] args) {
-        DictionaryView.launch(CurrencyView.class);
+    public double getExchangeRate(String sourceCurrency, String targetCurrency) {
+        return currencyDao.getExchangeRate(sourceCurrency, targetCurrency);
+    }
+    public double convertCurrency(String sourceCurrency, String targetCurrency, double amount) {
+        double exchangeRate = currencyDao.getExchangeRate(sourceCurrency, targetCurrency);
+        if (exchangeRate != 0.0) {
+            return amount * exchangeRate;
+        } else {
+            return -1; // Or throw an exception
+        }
     }
 }

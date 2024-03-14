@@ -13,9 +13,12 @@ CREATE TABLE Currency (
 INSERT INTO Currency (abbreviation, name, conversion_rate) VALUES
     ('EUR', 'Euro', 1.0),
     ('USD', 'United States Dollar', 1.15),
-    ('ALL', 'Albanian Lek', 110.0),
-    ('JPY', 'Japanese Yen', 120.0),
-    ('GBP', 'British Pound', 0.8);
+    ('ALL', 'Albanian Lek', 104.0),
+    ('JPY', 'Japanese Yen', 160.97),
+    ('GBP', 'British Pound', 0.85),
+    ('RNB', 'Renminbi', 7.86),
+    ('SAR', 'Saudi Riyal', 4.10),
+    ('TRY', 'Turkish Lira', 34.86);
 
 DROP USER IF EXISTS 'appuser'@'localhost';
 
